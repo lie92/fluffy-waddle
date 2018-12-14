@@ -41,7 +41,8 @@ class Lie92Player extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-
+        //je connais pas la bonne stretegie, esperons que le site en go sera plus facile
+        //avec la nouvelle strategie je suis arrivé 3ème
         if ($this->result->getNbRound() % 4) {
             return parent::friendChoice();
         }
