@@ -42,7 +42,26 @@ class Lie92Player extends Player
         // -------------------------------------    -----------------------------------------------------
 
         //je connais pas la bonne stretegie, esperons que le site en go sera plus facile
-        //avec la nouvelle strategie je suis arrivé 3ème
+        $tab = $this->result->getChoicesFor($this->opponentSide);
+        $nb_positifs = 0;
+        $nb_negatif = 0;
+        $length = count($tab);
+        for ($i = 0; $i < $length; $i++) {
+            if ($tab[$i] == parent::friendChoice()) {
+                $nb_positifs++;
+            }
+            else if ($tab[$i] === parent::foeChoice()) {
+                $nb_negatif++;
+            }
+        }
+        if ($nb_negatif != 0 ) {
+            $nb_negatif = $nb_negatif / $length;
+        }
+        if ($nb_positifs != 0) {
+            $nb_positifs = $nb_positifs / $length;
+        }
+
+
         if ($this->result->getNbRound() % 4) {
             return parent::friendChoice();
         }
@@ -50,8 +69,14 @@ class Lie92Player extends Player
             return parent::friendChoice();
         }
         // D'après les étoiles, quand c'est impair il faut absolument retourner foe
-        else {
+        else if ($nb_negatif > 0.2) {
             return parent::foeChoice();
+        }
+        else if ($nb_negatif < 0.4) {
+            return parent::foeChoice();
+        }
+        else {
+            return parent::friendChoice();
         }
     }
 };
