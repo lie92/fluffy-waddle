@@ -72,6 +72,7 @@ class Lie92Player extends Player
         else if ($nb_negatif > 0.2) {
             return parent::foeChoice();
         }
+        //c'est des coefficient très optimisés
         else if ($nb_negatif < 0.4) {
             return parent::foeChoice();
         }
