@@ -41,12 +41,16 @@ class Lie92Player extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-        if ($this->result->getNbRound() % 2) {
-            return parent::foeChoice();
-        }
-        else {
+
+        if ($this->result->getNbRound() % 4) {
             return parent::friendChoice();
         }
+        else if ($this->result->getNbRound() % 3) {
+            return parent::friendChoice();
+        }
+        // D'après les étoiles, quand c'est impair il faut absolument retourner foe
+        else {
+            return parent::foeChoice();
+        }
     }
- 
 };
